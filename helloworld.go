@@ -29,6 +29,23 @@ func main() {
 
     cd, _ := doesPanic(makePanic)
     fmt.Println("Did panic?", cd)
+
+    fmt.Println("Average:", avg([]float64{0.6, 0.7, -0.9, 2.5}))
+    fmt.Println("Average:", avg([]float64{}))
+}
+
+func avg(x []float64) (avg float64) {
+    avg = 0.0
+    switch len(x) {
+    case 0:
+        avg = 0.0
+    default:
+    for i:= 0; i < len(x); i++ {
+        avg += x[i]
+    }
+    avg = avg / float64(len(x))
+}
+return 
 }
 
 func returnValue(x int, y int) int {
