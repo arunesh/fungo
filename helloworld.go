@@ -8,22 +8,6 @@ import "strconv"
 func main() {
 //    var b string
 
-      var myarray [10]int
-    myarray[0] = 5
-    fmt.Println("myarray[0] =", myarray[0])
-    slice := myarray[:9]
-    slice2 := myarray[:5]
-    fmt.Println("slice[0] =", slice[0])
-    fmt.Println("slice2[0] =", slice2[0])
-
-    slice2 = append(slice2, 3, 5, 7)
-    myarray[0] = 1
-    fmt.Println("slice[0] =", slice[0])
-    fmt.Println("slice2[0] =", slice2[0])
-    fmt.Println("slice2 =", slice2)
-    fmt.Println("slice1 =", slice)
-    fmt.Println("myarray =", myarray)
-
     fmt.Println(" compareWith(5, 10) = ", compareWith(5, 10, returnValue))
     variadic(1, 5, 7, 9, 30, 4, 634)
 
@@ -36,6 +20,15 @@ func main() {
     newline(1, 4,6, 78, 2)
     p := plusX(5)
     fmt.Println("plus 5 = ", p(2))
+    fmt.Println("array = ", mapf(p, 4, 5, 6, 8, 2))
+}
+
+func mapf(x func (int) int, y...int) (r []int) {
+    r = make([]int, len(y))
+    for i, v := range y {
+        r[i] = x(v)
+    }
+    return
 }
 
 func plusX(x int) (r func(y int) int) {
