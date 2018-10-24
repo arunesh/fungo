@@ -32,6 +32,30 @@ func main() {
 
     fmt.Println("Average:", avg([]float64{0.6, 0.7, -0.9, 2.5}))
     fmt.Println("Average:", avg([]float64{}))
+
+    newline(1, 4,6, 78, 2)
+    p := plusX(5)
+    fmt.Println("plus 5 = ", p(2))
+}
+
+func plusX(x int) (r func(y int) int) {
+    r = func(y int) int {
+        return y + x
+    }
+    return
+}
+
+func plusTwo() (x func(y int) int) {
+    x = func(y int) int {
+        return y + 2
+    }
+    return
+}
+
+func newline(x...int) {
+    for i, y := range x {
+        fmt.Printf("array[%d] = %d \n", i, y)
+    }
 }
 
 func avg(x []float64) (avg float64) {
@@ -45,7 +69,17 @@ func avg(x []float64) (avg float64) {
     }
     avg = avg / float64(len(x))
 }
-return 
+return
+}
+
+func fib(n int) (f []int) {
+
+    f = make([]int, n)
+    f[0], f[1] = 1, 1
+    for i := 2; i < n; i ++ {
+        f[i] = f[i -1] + f[i - 2]
+    }
+    return
 }
 
 func returnValue(x int, y int) int {
