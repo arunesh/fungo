@@ -5,6 +5,25 @@ import "strconv"
 
 /* print something in the main function */
 
+type stack struct {
+    top int
+    data [10]int
+}
+
+func (p *stack) push(k int) {
+    if p.top < 9 {
+        p.data[p.top] = k
+        p.top ++
+    }
+}
+
+func (p *stack) pop() int {
+    p.top--
+    x := p.data[p.top]
+    p.data[p.top] = 0
+    return x
+}
+
 func main() {
 //    var b string
 
@@ -21,6 +40,13 @@ func main() {
     p := plusX(5)
     fmt.Println("plus 5 = ", p(2))
     fmt.Println("array = ", mapf(p, 4, 5, 6, 8, 2))
+
+    var s stack
+    s.push(10)
+    s.push(1000)
+    fmt.Println("S = ", s)
+    fmt.Println("Pop =", s.pop())
+    fmt.Println("new S =", s)
 }
 
 func mapf(x func (int) int, y...int) (r []int) {
