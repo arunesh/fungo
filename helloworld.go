@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 import "strconv"
+import "world"
 
 /* print something in the main function */
 
@@ -47,6 +48,7 @@ func main() {
     fmt.Println("S = ", s)
     fmt.Println("Pop =", s.pop())
     fmt.Println("new S =", s)
+    fmt.Println("Is even =", world.IsEven(4))
 }
 
 func mapf(x func (int) int, y...int) (r []int) {
