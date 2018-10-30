@@ -16,6 +16,9 @@ func (p *Stack) Push(k int) {
 
 func (p *Stack) Pop() int {
     p.top--
+    if p.top < 0 {
+        p.top = 0
+    }
     x := p.data[p.top]
     p.data[p.top] = 0
     return x

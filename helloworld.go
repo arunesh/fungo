@@ -28,6 +28,13 @@ func (p *stack) pop() int {
 func main() {
 //    var b string
 
+    var x []int
+
+    x = make([]int, 10)
+
+    x[1]= 109
+    fmt.Printf("X = %v\n", x)
+
     fmt.Println(" compareWith(5, 10) = ", compareWith(5, 10, returnValue))
     variadic(1, 5, 7, 9, 30, 4, 634)
 
