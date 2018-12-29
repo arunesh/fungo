@@ -15,7 +15,17 @@ func initSeq() func () int {
     }
 }
 
+func mod(z []int) {
+    z[0] = 1
+    fmt.Println(z)
+}
+
 func main() {
+
+    z := [...]int{1, 4, 5}
+
+    fmt.Printf("Type :%T\n", z)
+
     nextSeq := initSeq()
     fmt.Println("next = ", nextSeq())
     fmt.Println("next = ", nextSeq())
@@ -67,6 +77,14 @@ func main() {
         fmt.Println("i = ", i, " c = ", c)
     }
     fmt.Println("Function Sum =", doSum(2, 5, 6))
+
+    s := []int{7, 2, 8, -9, 4, 0}
+
+    c := make(chan int, 2)
+    go sumArr(s[:len(s)/2], c)
+    go sumArr(s[len(s)/2:], c)
+    x, y := <-c, <-c
+    fmt.Println("GO ROUTINES:", x, y, x+y)
 }
 
 func printRand() {
@@ -89,6 +107,17 @@ func printRand() {
     }
 
     return
+}
+
+func sumArr(vals []int, c chan int) int {
+    fmt.Println("Number of values:", len(vals))
+    sum := 0
+    for _, v := range vals {
+        sum += v
+    }
+    c <- sum
+    fmt.Println("Sum = ", sum)
+    return sum
 }
 
 func doSum(vals ...int) int {

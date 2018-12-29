@@ -56,6 +56,13 @@ func main() {
     fmt.Println("Pop =", s.pop())
     fmt.Println("new S =", s)
     fmt.Println("Is even =", world.IsEven(4))
+
+    c := make(chan int)
+    go fib(10, c)
+    fmt.Println("Fib:")
+    for i := range c {
+        fmt.Println(i)
+    }
 }
 
 func mapf(x func (int) int, y...int) (r []int) {
@@ -100,14 +107,15 @@ func avg(x []float64) (avg float64) {
 return
 }
 
-func fib(n int) (f []int) {
+func fib(n int, c chan int) {
 
-    f = make([]int, n)
+    f := make([]int, n)
     f[0], f[1] = 1, 1
     for i := 2; i < n; i ++ {
         f[i] = f[i -1] + f[i - 2]
+        c <- f[i]
     }
-    return
+    close(c)
 }
 
 func returnValue(x int, y int) int {
