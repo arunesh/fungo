@@ -37,7 +37,7 @@ func (q *UrlQ) Push(x interface{}) {
 	n := len(*q)
 	item := x.(*Url)
 	item.depth = n
-	*q = append(*q, item)
+	*q = append(*q, *item)
 }
 
 func (q *UrlQ) Pop() interface{} {
@@ -63,8 +63,17 @@ func crawl(start string, fetcher UrlFetcher) {
 	}
 }
 
+type FakeFetcher struct {
+}
+
+func (q *FakeFetcher) Fetch(url string) (body string, urls []string, err error) {
+	return "Fake body", [2]string{"blah1", "blah2"}, nil
+}
+
 func main() {
 	fmt.Println("Web crawler.")
 	url := getInput("Gimme a URL:")
 	fmt.Println("Got url:" + url)
+	ff := FakeFetcher{}
+	ff.Fetch("google.com")
 }
